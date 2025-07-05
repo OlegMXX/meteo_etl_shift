@@ -1,19 +1,7 @@
 import requests
+from config.constants import URL_ADDRESS
 
-URL_ADDRESS = (
-    "https://api.open-meteo.com/v1/forecast?"
-    "latitude=55.0344&longitude=82.9434&"
-    "daily=sunrise,sunset,daylight_duration&"
-    "hourly=temperature_2m,relative_humidity_2m,dew_point_2m,"
-    "apparent_temperature,temperature_80m,temperature_120m,"
-    "wind_speed_10m,wind_speed_80m,wind_direction_10m,"
-    "wind_direction_80m,visibility,evapotranspiration,"
-    "weather_code,soil_temperature_0cm,soil_temperature_6cm,"
-    "rain,showers,snowfall&timezone=auto&timeformat=unixtime&"
-    "wind_speed_unit=kn&temperature_unit=fahrenheit&"
-    "precipitation_unit=inch&start_date=2025-05-16&"
-    "end_date=2025-05-30"
-)
+from services import WeatherDayFactory
 
 
 def get_data():
@@ -22,4 +10,9 @@ def get_data():
 
 
 if __name__ == "__main__":
-    print(get_data())
+    weather_list = WeatherDayFactory(get_data())
+    # print(weather_list.get_days())
+    for day in weather_list.get_days():
+        print(day)
+
+
