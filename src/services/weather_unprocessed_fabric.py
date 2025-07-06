@@ -1,20 +1,26 @@
 from typing import List
 
-from models import WeatherDayUnprocessed
-from utils import unixtime_to_iso8601
+from models import WeatherDayUnprocessedModel
+from utils import Convertor
 
 
-class WeatherDayFactory:
+class WeatherDayUnprocessedFactory:
+    """
+    Класс-фабрика.
+    Принимает словарь с API-респонза, парсит его и формирует
+    список объектов класса WeatherDayUnprocessedModel
+    в атрибуте days.
+    """
     def __init__(self, weather_data: dict):
         self.weather_data = weather_data
         self.days = self._parse_weather_data()
 
     def _parse_weather_data(self):
-        days: list[WeatherDayUnprocessed] = []
+        days: list[WeatherDayUnprocessedModel] = []
         cnt24 = 0
         cnt_day = 0
         for day in self.weather_data["daily"]["time"]:
-            date = unixtime_to_iso8601(day)
+            date = Convertor.unixtime_to_iso8601(day)
             time = self.weather_data["hourly"]["time"][cnt24:cnt24+24]
             temperature_2m = self.weather_data["hourly"]["temperature_2m"][cnt24:cnt24+24]
             relative_humidity_2m = self.weather_data["hourly"]["relative_humidity_2m"][cnt24:cnt24+24]
@@ -34,7 +40,7 @@ class WeatherDayFactory:
             sunset = self.weather_data["daily"]["sunset"][cnt_day:cnt_day+1][0]
             daylight_duration = self.weather_data["daily"]["daylight_duration"][cnt_day:cnt_day+1][0]
 
-            days.append(WeatherDayUnprocessed(
+            days.append(WeatherDayUnprocessedModel(
                 date=date,
                 time=time,
                 temperature_2m=temperature_2m,
@@ -60,5 +66,10 @@ class WeatherDayFactory:
 
         return days
 
-    def get_days(self) -> List[WeatherDayUnprocessed]:
+    def get_days(self) -> List[WeatherDayUnprocessedModel]:
+        """
+        Возвращает список объектов из атрибута days
+        """
         return self.days
+
+

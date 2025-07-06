@@ -1,4 +1,8 @@
-from .weather_unprocessed import WeatherDayUnprocessed
+from .weather_unprocessed import WeatherDayUnprocessedModel
+from .weather_processed import WeatherDayProcessedModel
 
 
-__all__ = ['WeatherDayUnprocessed']
+__all__ = [
+    'WeatherDayUnprocessedModel',
+    'WeatherDayProcessedModel',
+]

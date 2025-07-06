@@ -1,9 +1,9 @@
 from typing import List
 
 
-class WeatherDayUnprocessed:
+class WeatherDayUnprocessedModel:
     """
-    Класс, объект которого описывает показатели погоды за 1 день
+    Модель описывает RAW показатели погоды за 1 день.
     """
     __slots__ = [
         "date",
@@ -32,7 +32,7 @@ class WeatherDayUnprocessed:
         date: str,
         time: List[int],
         temperature_2m: List[float],
-        relative_humidity_2m: List[float],
+        relative_humidity_2m: List[int],
         dew_point_2m: List[float],
         apparent_temperature: List[float],
         temperature_80m: List[float],
@@ -71,7 +71,7 @@ class WeatherDayUnprocessed:
 
     def __repr__(self):
         return (
-            f"WeatherData("
+            f"{self.__class__.__name__}("
             f"date={repr(self.date)}, "
             f"time={repr(self.time)}, "
             f"temperature_2m={self.temperature_2m}, "
