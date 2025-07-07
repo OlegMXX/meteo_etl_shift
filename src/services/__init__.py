@@ -1,7 +1,7 @@
-from .weather_unprocessed_fabric import WeatherDayUnprocessedFactory
-from .weather_processed_fabric import WeatherDayProcessedFactory
+from .weather_unprocessed_fabric import WeatherDayUnprocessedFabric
+from .weather_processed_fabric import WeatherDayProcessedFabric
 
 __all__ = [
-    'WeatherDayUnprocessedFactory',
-    'WeatherDayProcessedFactory',
+    'WeatherDayUnprocessedFabric',
+    'WeatherDayProcessedFabric',
 ]

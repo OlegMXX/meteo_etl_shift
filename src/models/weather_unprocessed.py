@@ -1,7 +1,9 @@
 from typing import List
 
+from .weather_base import WeatherDayBase
 
-class WeatherDayUnprocessedModel:
+
+class WeatherDayUnprocessedModel(WeatherDayBase):
     """
     Модель описывает RAW показатели погоды за 1 день.
     """
@@ -68,30 +70,3 @@ class WeatherDayUnprocessedModel:
         self.sunrise = sunrise
         self.sunset = sunset
         self.daylight_duration = daylight_duration
-
-    def __repr__(self):
-        return (
-            f"{self.__class__.__name__}("
-            f"date={repr(self.date)}, "
-            f"time={repr(self.time)}, "
-            f"temperature_2m={self.temperature_2m}, "
-            f"relative_humidity_2m={self.relative_humidity_2m}, "
-            f"dew_point_2m={self.dew_point_2m}, "
-            f"apparent_temperature={self.apparent_temperature}, "
-            f"temperature_80m={self.temperature_80m}, "
-            f"temperature_120m={self.temperature_120m}, "
-            f"wind_speed_10m={self.wind_speed_10m}, "
-            f"wind_speed_80m={self.wind_speed_80m}, "
-            f"visibility={self.visibility}, "
-            f"rain={self.rain}, "
-            f"showers={self.showers}, "
-            f"snowfall={self.snowfall}, "
-            f"soil_temperature_0cm={self.soil_temperature_0cm}, "
-            f"soil_temperature_6cm={self.soil_temperature_6cm}, "
-            f"sunrise={repr(self.sunrise)}, "
-            f"sunset={repr(self.sunset)}, "
-            f"daylight_duration={self.daylight_duration})"
-        )
-
-    def __str__(self) -> str:
-        return self.__repr__()

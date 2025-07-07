@@ -1,7 +1,9 @@
 from typing import List
 
+from .weather_base import WeatherDayBase
 
-class WeatherDayProcessedModel:
+
+class WeatherDayProcessedModel(WeatherDayBase):
     """
     Модель описывает итоговые показатели погоды за 1 день.
     """
@@ -105,11 +107,9 @@ class WeatherDayProcessedModel:
         self.avg_wind_speed_10m_24h = avg_wind_speed_10m_24h
         self.avg_wind_speed_80m_24h = avg_wind_speed_80m_24h
         self.avg_visibility_24h = avg_visibility_24h
-
         self.total_rain_24h = total_rain_24h
         self.total_showers_24h = total_showers_24h
         self.total_snowfall_24h = total_snowfall_24h
-
         self.avg_temperature_2m_daylight = avg_temperature_2m_daylight
         self.avg_relative_humidity_2m_daylight = avg_relative_humidity_2m_daylight
         self.avg_dew_point_2m_daylight = avg_dew_point_2m_daylight
@@ -122,7 +122,6 @@ class WeatherDayProcessedModel:
         self.total_rain_daylight = total_rain_daylight
         self.total_showers_daylight = total_showers_daylight
         self.total_snowfall_daylight = total_snowfall_daylight
-
         self.wind_speed_10m_m_per_s = wind_speed_10m_m_per_s
         self.wind_speed_80m_m_per_s = wind_speed_80m_m_per_s
         self.temperature_2m_celsius = temperature_2m_celsius
@@ -137,56 +136,6 @@ class WeatherDayProcessedModel:
         self.visibility_m = visibility_m
         self.dew_point_2m_celsius = dew_point_2m_celsius
         self.relative_humidity_2m = relative_humidity_2m
-
         self.daylight_hours = daylight_hours
         self.sunset_iso = sunset_iso
         self.sunrise_iso = sunrise_iso
-
-    def __repr__(self) -> str:
-        return (
-            f"{self.__class__.__name__}("
-            f"date={self.date}, "
-            f"wind_speed_10m_m_per_s={self.wind_speed_10m_m_per_s}, "
-            f"wind_speed_80m_m_per_s={self.wind_speed_80m_m_per_s}, "
-            f"temperature_2m_celsius={self.temperature_2m_celsius}, "
-            f"apparent_temperature_celsius={self.apparent_temperature_celsius}, "
-            f"temperature_80m_celsius={self.temperature_80m_celsius}, "
-            f"temperature_120m_celsius={self.temperature_120m_celsius}, "
-            f"soil_temperature_0cm_celsius={self.soil_temperature_0cm_celsius}, "
-            f"soil_temperature_6cm_celsius={self.soil_temperature_6cm_celsius}, "
-            f"rain_mm={self.rain_mm}, "
-            f"showers_mm={self.showers_mm}, "
-            f"snowfall_mm={self.snowfall_mm}, "
-            f"visibility_m={self.visibility_m}), "
-            f"relative_humidity_2m={self.relative_humidity_2m}, "
-            f"avg_temperature_2m_24h={self.avg_temperature_2m_24h}, "
-            f"avg_relative_humidity_2m_24h={self.avg_relative_humidity_2m_24h}, "
-            f"avg_dew_point_2m_24h={self.avg_dew_point_2m_24h}, "
-            f"avg_apparent_temperature_24h={self.avg_apparent_temperature_24h}, "
-            f"avg_temperature_80m_24h={self.avg_temperature_80m_24h}, "
-            f"avg_temperature_120m_24h={self.avg_temperature_120m_24h}, "
-            f"avg_wind_speed_10m_24h={self.avg_wind_speed_10m_24h}, "
-            f"avg_wind_speed_80m_24h={self.avg_wind_speed_80m_24h}, "
-            f"avg_visibility_24h={self.avg_visibility_24h})"
-            f"total_rain_24h={self.total_rain_24h}, "
-            f"total_showers_24h={self.total_showers_24h}, "
-            f"total_snowfall_24h={self.total_snowfall_24h}), "
-            f"daylight_hours={self.daylight_hours}, "
-            f"sunset_iso={self.sunset_iso}, "
-            f"sunrise_iso={self.sunrise_iso}, "
-            f"avg_temperature_2m_daylight={self.avg_temperature_2m_daylight}, "
-            f"avg_relative_humidity_2m_daylight={self.avg_relative_humidity_2m_daylight}, "
-            f"avg_dew_point_2m_daylight={self.avg_dew_point_2m_daylight}, "
-            f"avg_apparent_temperature_daylight={self.avg_apparent_temperature_daylight}, "
-            f"avg_temperature_80m_daylight={self.avg_temperature_80m_daylight}, "
-            f"avg_temperature_120m_daylight={self.avg_temperature_120m_daylight}, "
-            f"avg_wind_speed_10m_daylight={self.avg_wind_speed_10m_daylight}, "
-            f"avg_wind_speed_80m_daylight={self.avg_wind_speed_80m_daylight}, "
-            f"avg_visibility_daylight={self.avg_visibility_daylight}, "
-            f"total_rain_daylight={self.total_rain_daylight}, "
-            f"total_showers_daylight={self.total_showers_daylight}, "
-            f"total_snowfall_daylight={self.total_snowfall_daylight}"
-        )
-
-    def __str__(self) -> str:
-        return self.__repr__()

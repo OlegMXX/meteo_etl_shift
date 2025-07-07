@@ -1,7 +1,7 @@
 import requests
 from config.constants import URL_ADDRESS
 
-from services import WeatherDayUnprocessedFactory, WeatherDayProcessedFactory
+from services import WeatherDayUnprocessedFabric, WeatherDayProcessedFabric
 
 
 def get_data():
@@ -10,12 +10,12 @@ def get_data():
 
 
 if __name__ == "__main__":
-    weather_list = WeatherDayUnprocessedFactory(get_data()).get_days()
+    weather_list = WeatherDayUnprocessedFabric(get_data()).get_days()
 
     for day in weather_list:
         print(day)
 
-    processed_weather_list = WeatherDayProcessedFactory(weather_list)
+    processed_weather_list = WeatherDayProcessedFabric(weather_list)
 
     for day in processed_weather_list.get_days():
         print(day)

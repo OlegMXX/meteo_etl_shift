@@ -2,21 +2,19 @@ from typing import List
 
 from models import WeatherDayUnprocessedModel
 from utils import Convertor
+from .weather_fabric_base import WeatherFabricBase
 
-
-class WeatherDayUnprocessedFactory:
+class WeatherDayUnprocessedFabric(WeatherFabricBase):
     """
     Класс-фабрика.
     Принимает словарь с API-респонза, парсит его и формирует
     список объектов класса WeatherDayUnprocessedModel
     в атрибуте days.
     """
-    def __init__(self, weather_data: dict):
-        self.weather_data = weather_data
-        self.days = self._parse_weather_data()
 
     def _parse_weather_data(self):
         days: list[WeatherDayUnprocessedModel] = []
+
         cnt24 = 0
         cnt_day = 0
         for day in self.weather_data["daily"]["time"]:
@@ -65,11 +63,3 @@ class WeatherDayUnprocessedFactory:
             cnt_day += 1
 
         return days
-
-    def get_days(self) -> List[WeatherDayUnprocessedModel]:
-        """
-        Возвращает список объектов из атрибута days
-        """
-        return self.days
-
-
