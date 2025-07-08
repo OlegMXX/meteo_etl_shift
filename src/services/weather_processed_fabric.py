@@ -1,20 +1,15 @@
-from typing import List
-
 from models import WeatherDayProcessedModel
-from models import WeatherDayUnprocessedModel
 from utils import Convertor
+from .weather_fabric_base import WeatherFabricBase
 
 
-class WeatherDayProcessedFactory:
+class WeatherDayProcessedFabric(WeatherFabricBase):
     """
     Класс-фабрика.
     Принимает список объектов WeatherDayUnprocessedModel, парсит его и формирует
     список объектов класса WeatherDayProcessedModel
     в атрибуте days.
     """
-    def __init__(self, weather_data: List[WeatherDayUnprocessedModel]):
-        self.weather_data = weather_data
-        self.days = self._parse_weather_data()
 
     def _parse_weather_data(self):
         days: list[WeatherDayProcessedModel] = []
@@ -175,9 +170,3 @@ class WeatherDayProcessedFactory:
             ))
 
         return days
-
-    def get_days(self) -> List[WeatherDayProcessedModel]:
-        """
-        Возвращает список объектов из атрибута days
-        """
-        return self.days
