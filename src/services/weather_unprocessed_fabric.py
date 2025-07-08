@@ -4,6 +4,7 @@ from models import WeatherDayUnprocessedModel
 from utils import Convertor
 from .weather_fabric_base import WeatherFabricBase
 
+
 class WeatherDayUnprocessedFabric(WeatherFabricBase):
     """
     Класс-фабрика.

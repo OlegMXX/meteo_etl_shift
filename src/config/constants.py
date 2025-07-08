@@ -9,6 +9,6 @@ URL_ADDRESS = (
     "weather_code,soil_temperature_0cm,soil_temperature_6cm,"
     "rain,showers,snowfall&timezone=auto&timeformat=unixtime&"
     "wind_speed_unit=kn&temperature_unit=fahrenheit&"
-    "precipitation_unit=inch&start_date=2025-05-16&"
-    "end_date=2025-05-19"
+    "precipitation_unit=inch&start_date=2025-05-11&"
+    "end_date=2025-05-29"
 )

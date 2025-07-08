@@ -29,7 +29,7 @@ class WeatherDB:
         async with self.pool.acquire() as conn:
             await conn.execute(
                 """     
-                CREATE TABLE weather_data (
+                CREATE TABLE IF NOT EXISTS weather_data (
                     avg_temperature_2m_24h DECIMAL(5,2),
                     avg_relative_humidity_2m_24h DECIMAL(5,2),
                     avg_dew_point_2m_24h DECIMAL(5,2),
@@ -72,8 +72,8 @@ class WeatherDB:
                     dew_point_2m_celsius DECIMAL(5,2)[],
                     
                     daylight_hours DECIMAL(5,2),
-                    sunset_iso TIMESTAMP WITH TIME ZONE,
-                    sunrise_iso TIMESTAMP WITH TIME ZONE
+                    sunset_iso VARCHAR,
+                    sunrise_iso VARCHAR
                     
                 );
                 """)
