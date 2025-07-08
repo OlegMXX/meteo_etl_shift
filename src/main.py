@@ -1,8 +1,12 @@
+import sys
+from pathlib import Path
 import asyncio
 
 from core import WeatherApp
 from services import UrlConfigurator
 from utils import input_validator
+
+sys.path.append(str(Path(__file__).parent))
 
 if __name__ == "__main__":
     async def main():
@@ -19,9 +23,11 @@ if __name__ == "__main__":
 
             if want_csv == "y":
                 app.get_csv()
+                print("Data saved in CSV file")
 
             if want_db_save == "y":
                 await app.init_db()
                 await app.insert_weather_data()
+                print("Data saved in DB")
 
     asyncio.run(main())

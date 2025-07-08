@@ -1,8 +1,11 @@
+import os
 import asyncpg
+from dotenv import load_dotenv
 from typing import Optional
 
 from models import WeatherDayProcessedModel
 
+load_dotenv()
 
 class WeatherDB:
     def __init__(self):
@@ -13,11 +16,11 @@ class WeatherDB:
         Создает пул соединений с базой данных
         """
         self.pool = await asyncpg.create_pool(
-            user="user_olly",
-            password="4j8CXN1t35+7m6vh0",
-            database="PostgreSQL-6601",
-            host="localhost",
-            port=5432,
+            user=os.getenv("POSTGRES_USER"),
+            password=os.getenv("POSTGRES_PASSWORD"),
+            database=os.getenv("POSTGRES_DB"),
+            host=os.getenv("POSTGRES_HOST"),
+            port=os.getenv("POSTGRES_PORT"),
             min_size=5,
             max_size=20
         )
@@ -92,7 +95,7 @@ class WeatherDB:
                 data.sunset_iso
             )
             if len(result) != 0:
-                print("База данных уже содержит вносимую запись. Повторная запись предотвращена.")
+                print("This data already exists in the system. We didn't save a duplicate.")
             else:
                 await conn.execute("""
                     INSERT INTO weather_data
