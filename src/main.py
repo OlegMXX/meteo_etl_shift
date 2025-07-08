@@ -1,21 +1,27 @@
-import requests
-from config.constants import URL_ADDRESS
+import asyncio
 
-from services import WeatherDayUnprocessedFabric, WeatherDayProcessedFabric
-
-
-def get_data():
-    res = requests.get(URL_ADDRESS)
-    return res.json()
-
+from core import WeatherApp
+from services import UrlConfigurator
+from utils import input_validator
 
 if __name__ == "__main__":
-    weather_list = WeatherDayUnprocessedFabric(get_data()).get_days()
+    async def main():
+        print("Starting Weather App")
+        print("The earliest date for data tou can choose is 2025-05-01")
+        date_from = input("Input start date (YYYY-MM-DD):")
+        date_to = input("Input end date (YYYY-MM-DD):")
+        if input_validator(date_from, date_to):
+            want_csv = input("Would you like to save the csv file? (y/n): ")
+            want_db_save = input("Would you like to save the database? (y/n): ")
 
-    for day in weather_list:
-        print(day)
+            url_address = UrlConfigurator(date_from, date_to).get_configured_url()
+            app = WeatherApp(url_address)
 
-    processed_weather_list = WeatherDayProcessedFabric(weather_list)
+            if want_csv == "y":
+                app.get_csv()
 
-    for day in processed_weather_list.get_days():
-        print(day)
+            if want_db_save == "y":
+                await app.init_db()
+                await app.insert_weather_data()
+
+    asyncio.run(main())

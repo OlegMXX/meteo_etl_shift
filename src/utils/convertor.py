@@ -27,6 +27,7 @@ class Convertor:
         """
         return round((fahrenheit - 32) * 5 / 9, 2)
 
+
     @staticmethod
     def inches_to_mm(inches: float) -> float:
         """
@@ -49,6 +50,7 @@ class Convertor:
         :param knots: float
         :return: float
         """
+
         return round(knots * 0.514444, 2)
 
     @staticmethod
