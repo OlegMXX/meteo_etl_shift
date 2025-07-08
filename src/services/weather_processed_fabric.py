@@ -168,5 +168,4 @@ class WeatherDayProcessedFabric(WeatherFabricBase):
                 total_showers_daylight=total_showers_daylight,
                 total_snowfall_daylight=total_snowfall_daylight
             ))
-
         return days
